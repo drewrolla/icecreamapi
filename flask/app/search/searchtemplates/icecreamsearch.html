@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Search for Ice Cream Shops</h1>
+    <form class="container" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.location(class='form-control', placeholder='Location', autocomplete='off') }}
+        {{ form.submit(class='btn btn-success') }}
+    </form>
+    {% if shops %}
+    <div>
+        <img src="{{ shops.img_url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ shops.name.title() }}</h5>
+            <strong>Address: {{ shops.address }}}</strong>
+            <li>Rating: {{ shops.rating }}</li>
+            <li>Price: {{ shops.price }}</li>
+            <li><a>{{ shops.website }}</a></li>
+        </div>
+        {% if saved %}
+            <a href="/remove/{{ shops.name }}">Unsave</a>
+        {% else %}
+            <a href="/save/{{ shops.name }}">Save</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+
+{% endblock %}
