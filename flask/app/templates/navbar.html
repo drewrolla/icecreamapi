@@ -6,15 +6,19 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if current_user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/search">Search</a>
           </li>
+          {% else %}
+          {% endif %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
             <ul class="dropdown-menu">
                 {% if current_user.is_authenticated %}
+                <li><a class="dropdown-item" href="/saved">Saved Shops</a></li>
                 <li><a class="dropdown-item" href="/profile">Edit Account</a></li>
                 <li><a class="dropdown-item" href="/profile/delete">Delete Account</a></li>
                 <li><a class="dropdown-item" href="/logout">Log Out</a></li>

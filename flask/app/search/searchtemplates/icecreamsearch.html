@@ -1,30 +1,29 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
-    <h1>Search for Ice Cream Shops</h1>
+    <h1>Search for Ice Cream</h1>
     <form class="container" method="POST">
         {{ form.hidden_tag() }}
         {{ form.location(class='form-control', placeholder='Location', autocomplete='off') }}
         {{ form.submit(class='btn btn-success') }}
     </form>
     {% if shops %}
-    <div>
+    <div class="card" style="width: 18rem;">
         <img src="{{ shops.img_url }}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ shops.name.title() }}</h5>
-            <strong>Address: {{ shops.address }}}</strong>
-            <li>Rating: {{ shops.rating }}</li>
-            <li>Price: {{ shops.price }}</li>
-            <li><a>{{ shops.website }}</a></li>
+            <strong>Address: {{ shops.address }}</strong>
+            <ul>
+                <li>Rating: {{ shops.rating }}</li>
+                <li class="yelplink"><a href="{{ shops.website }}">Check them out on Yelp!</a></li>
+            </ul>
         </div>
         {% if saved %}
-            <a href="/remove/{{ shops.name }}">Unsave</a>
+            <a href="/remove/{{ shops.name }}" class="btn btn-danger">Remove</a>
         {% else %}
-            <a href="/save/{{ shops.name }}">Save</a>
+            <a href="/save/{{ shops.name }}" class="btn btn-success">Save</a>
         {% endif %}
     </div>
+    
     {% endif %}
-
-
 {% endblock %}

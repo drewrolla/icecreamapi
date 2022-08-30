@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-user_icecream = db.Table('user_cream',
+user_icecream = db.Table('user_icecream',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('icecream_id', db.Integer, db.ForeignKey('icecream.id'))
 )
@@ -44,15 +44,13 @@ class Icecream(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     rating = db.Column(db.Integer)
-    price = db.Column(db.String)
     address = db.Column(db.String)
     img_url = db.Column(db.String)
     website = db.Column(db.String)
 
-    def __init__(self, name, rating, price, address, img_url, website):
+    def __init__(self, name, rating, address, img_url, website):
         self.name = name
         self.rating = rating
-        self.price = price
         self.address = address
         self.img_url = img_url
         self.website = website
@@ -62,7 +60,6 @@ class Icecream(db.Model):
             'id': self.id,
             'name': self.name,
             'rating': self.rating,
-            'price': self.price,
             'address': self.address,
             'img_url': self.img_url,
             'website': self.website

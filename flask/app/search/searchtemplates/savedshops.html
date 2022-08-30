@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Saved Shops</h1>
+    <div class="row">
+    {% for s in shops %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ s.img_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ s.name.title() }}</h5>
+                <strong>Address: {{ s.address }}</strong>
+                <ul>
+                    <li>Rating: {{ s.rating }}</li>
+                    <li><a href="{{ s.website }}">Check them out on Yelp!</a></li>
+                </ul>
+            </div>
+                <a href="/remove/{{ s.name }}" class="btn btn-danger">Remove</a>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

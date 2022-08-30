@@ -21,7 +21,7 @@ def logMeIn():
                 if check_password_hash(user.password, password):
                     flash('Log in successful.', 'success')
                     login_user(user)
-                    return redirect(url_for('poke.showTeamPage'))
+                    return redirect(url_for('search.searchIceCream'))
             else:
                 flash('Incorrect password', 'danger')
         else:
@@ -31,7 +31,7 @@ def logMeIn():
 
 @auth.route('/logout', methods=["GET", "POST"])
 def logMeOut():
-    flash("You've yee'd your last haw.", 'success')
+    flash("See you later!", 'success')
     logout_user()
     return redirect(url_for('auth.logMeIn'))
 
