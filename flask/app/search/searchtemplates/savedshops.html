@@ -9,12 +9,10 @@
             <div class="card-body">
                 <h5 class="card-title">{{ s.name.title() }}</h5>
                 <strong>Address: {{ s.address }}</strong>
-                <ul>
-                    <li>Rating: {{ s.rating }}</li>
-                    <li><a href="{{ s.website }}">Check them out on Yelp!</a></li>
-                </ul>
+                <p>Rating: {{ s.rating }}</p>
+                <p><a href="{{ s.website }}">Check them out on Yelp!</a></p>
             </div>
-                <a href="/remove/{{ s.name }}" class="btn btn-danger">Remove</a>
+                <a href="/remove/{{ s.name }}" class="removeBtn btn btn-danger">Remove</a>
         </div>
     {% endfor %}
     </div>

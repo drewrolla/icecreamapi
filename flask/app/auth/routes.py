@@ -94,3 +94,62 @@ def delProfile():
             flash('Account successfully deleted.', 'success')
             return redirect(url_for('auth.logMeIn'))
     return render_template('delete.html')
+
+
+
+
+#################API#################
+@auth.route('/api/signup', methods=["POST"])
+def apiSignUp():
+    data = request.json
+
+    username = data['username']
+    email = data['email']
+    password = data['password']
+
+    user = User(username,email,password)
+
+    db.session.add(user)
+    db.session.commit()
+    return {
+        'status': 'ok',
+        'message': f"Successfully created user {username}"
+    }
+
+from app.apiauthhelper import basic_auth, token_auth
+
+@auth.route('/token', methods=["POST"])
+@basic_auth.login_required
+def getToken():
+    user = basic_auth.current_user()
+    return {
+        'status': 'ok',
+        'message': 'Login successful',
+        'data': user.to_dict()
+    }
+
+
+@auth.route('/api/login', methods=["POST"])
+def apiLogIn():
+    data = request.json
+    
+    username = data['username']
+    password = data['password']
+
+    user = User.query.filter_by(username=username).first()
+
+    if user:
+        if check_password_hash(user.password, password):
+            return {
+                'status': 'ok',
+                'message': 'Successfully logged in',
+                'data': user.to_dict()
+            }
+        return {
+            'status': 'not ok',
+            'message': 'Incorrect password'
+        }
+    return {
+        'status': 'not ok',
+        'message': 'Invalid username'
+    }

@@ -68,3 +68,44 @@ def removeIceCream(icecream_name):
 def savedShops():
     shops = current_user.shop.all()
     return render_template('savedshops.html', shops=shops)
+
+
+######### API ##########
+@search.route('/api/search', methods=["POST"])
+def apiSearch():
+    form = IceCreamSearchForm()
+    my_dict = {}
+    saved = False
+    if request.method == "POST":
+        print('Post request made.')
+        if form.validate():
+            location = form.location.data
+
+            # Define the parameters
+            PARAMETERS = {
+                'location': location,
+                'categories': 'icecream',
+                'limit': 50,
+                'radius': 10000
+            }
+            res = requests.get(url = ENDPOINT, params=PARAMETERS, headers=API_AUTH)
+            if res.ok:
+                yelp_data = res.json()
+                for each in yelp_data['businesses']:
+                    my_dict = {
+                        'name': each['name'],
+                        'rating': each['rating'],
+                        'address': each['location']['address1'],
+                        'img_url': each['image_url'],
+                        'website': each['url']
+                    }
+                shops = Icecream.query.filter_by(name=my_dict['name']).first()
+                if not shops:
+                    shops = Icecream(my_dict['name'], my_dict['rating'], my_dict['address'], my_dict['img_url'], my_dict['website'])
+                    shops.save()
+                if current_user.shop.filter_by(name=shops.name).first():
+                    saved = True
+    return {
+        'status': 'ok',
+        'message': 'search completed!'
+    }

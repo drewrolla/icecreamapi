@@ -1,9 +1,9 @@
 body {
     background-color: grey;
-    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperscute.com%2Fwp-content%2Fuploads%2F2020%2F07%2FHD-Ice-Cream-Cone-Backgrounds.jpg&f=1&nofb=1");
+    background-image: url("https://wyliepalooza.com/wp-content/uploads/2019/05/background-wylie.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    font-family: 'Noto Serif Balinese', serif;
+    font-family: 'Kanit', sans-serif;
 }
 
 div {
@@ -25,7 +25,7 @@ a .card {
 }
 
 .navbar {
-  background-color: rgb(76, 99, 101);
+  background-color: #fffdd0;
 }
 
 h1{
@@ -34,7 +34,7 @@ h1{
 }
 
 .noth1 a:hover{
-    color: rgb(199, 239, 54);
+    color: rgb(222, 46, 189);
 }
 
 .noth1 a{
@@ -43,7 +43,7 @@ h1{
 
 h2 {
     padding-top: 100px;
-    color: white;
+    color: black;
 }
 
 
@@ -56,7 +56,7 @@ li {
 }
 
 .navbar a:hover {
-  color: rgb(255, 255, 255);
+  color: rgb(98, 197, 224);
 }
 
 .deleted a:hover {
@@ -64,19 +64,63 @@ li {
 }
 
 .yelplink a:hover {
-    color: rgb(211, 103, 144);
+    color: rgb(222, 46, 189);
 }
 
 a:link, a:visited {
     color: black;
-    text-decoration: none;
     cursor: auto;
   }
 
 .nav-link {
-  color: white;
+  color: black;
 }
 
 .deleted {
   font-size: larger;
+}
+
+.card-img-top {
+  margin-top: 10px;
+}
+
+.card-img-top-search {
+  margin: 10px;
+}
+
+.searchBtn {
+  margin: 10px;
+}
+
+.removeBtn {
+  margin-bottom: 10px;
+}
+
+.icecreamicon {
+  height: 50px;
+  width: 50px;
+}
+
+.search-card {
+  margin-top: 10px;
+}
+
+.nav-item {
+  font-size: larger;
+}
+
+.editprofile {
+  width: 400px;
+}
+
+.searchcontainer {
+  width: 400px;
+}
+
+.logincontainer {
+  width: 400px;
+}
+
+.signupcontainer {
+  width: 400px;
 }
