@@ -40,6 +40,21 @@ class User(db.Model, UserMixin):
         db.session.add(self)
         db.session.commit()
 
+    def getShops(self):
+        list_of_tuples = db.session.query(user_icecream).filter(user_icecream.u.user_id==self.id).all()
+        return [Icecream.query.get(t[1]) for t in list_of_tuples]
+
+    def saveToDB(self):
+        db.session.commit()
+
+    def saveShops(self, icecream):
+        self.user_icecream.append(icecream)
+        db.session.commit()
+
+    def removeShops(self, icecream):
+        self.user_icecream.remove(icecream)
+        db.session.commit()
+
 class Icecream(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
